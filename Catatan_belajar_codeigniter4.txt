@@ -1,0 +1,63 @@
+CODEIGNITER 4
+=============
+1. Persiapan
+============
+1. Xampp
+2. Composer
+3. Gitbash
+4. Visual Studio Code
+ 4.1. Extension Intelephense (Install)
+ 4.2. Extension Prettier (Install)
+ 4.3. Snippet (Buat) File - Preferences - User Snippets - New Snippets - tulisnama, misal html.json
+ 4.4. Disable php bawaan (@builtin php)
+
+CONTOH SNIPPET
+==============
+{
+  "PHP Tag" : {
+    "prefix" : "php",
+    "body" : "<?php $1 ?>"
+  },
+  "Inline Echo" : {
+  "prefix" : "pphp",
+  "body" : "<?=$$1;?>
+  },
+}
+
+2. Install
+========
+> composer create-project codeigniter4/appstarter ci4_coba
+> composer create-project codeigniter4/appstarter ci4_coba --no-dev
+
+3. Server Bawaan
+==============
+> php spark serve
+
+4. .env
+============
+ubah file env menjadi .env
+hapus tanda #
+
+CI_ENVIRONMENT = production
+CI_ENVIRONMENT = development
+
+app.baseURL = 'localhost:8080'
+
+
+6. Base URL Dinamis Dengan Codeigniter 4
+=============================
+App > Config > Constants.php
+
+$base = isset($_SERVER['https']) ? "https://" : "http".$_SERVER['HTTP_HOST'].str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+
+defined('BASE') || define('BASE', $base);
+----------------------------------------------------------------------
+App > Config >App.php
+
+public $baseURL = BASE;
+---------------------------------------------------
+.env
+# app.baseURL = 'localhost:8080'
+
+
+
