@@ -1,0 +1,45 @@
+Membuat Controller
+$ php spark make:controller Pegawai
+$ php spark make:controller Pegawai -restful \\ RESTAPI
+
+Membuat model pegawai
+$ php spark make:model ModelPegawai
+
+
+Membuat database Migrasi
+$ php spark make:migration tbpegawai
+
+file migrasinya ada di folder app\Database\Migration\
+
+  public function up()
+    {
+        $this->forge->addField([
+            'blog_id' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
+                'auto_increment' => true,
+            ],
+            'blog_title' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'blog_description' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+        ]);
+        $this->forge->addKey('blog_id', true);
+        $this->forge->createTable('blog');
+    }
+
+    public function down()
+    {
+        $this->forge->dropTable('blog');
+    }
+
+Menjalankan database migrasi
+$ php spark migrate
+
+perbarui migrasi
+$ php spark migrate:refresh
