@@ -14,28 +14,36 @@ file migrasinya ada di folder app\Database\Migration\
   public function up()
     {
         $this->forge->addField([
-            'blog_id' => [
+            'id_pegawai' => [
                 'type'           => 'INT',
-                'constraint'     => 5,
+                'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'blog_title' => [
+            'pegawai_nip' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '12',
+            ],
+            'pegawai_nama' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'blog_description' => [
+            'pegawai_email' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'pegawai_alamat' => [
                 'type' => 'TEXT',
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('blog_id', true);
-        $this->forge->createTable('blog');
+        $this->forge->addKey('id_pegawai', true);
+        $this->forge->createTable('tb_pegawai');
     }
 
     public function down()
     {
-        $this->forge->dropTable('blog');
+        $this->forge->dropTable('tb_pegawai');
     }
 
 Menjalankan database migrasi
